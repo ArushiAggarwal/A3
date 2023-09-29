@@ -51,6 +51,7 @@ public class LinkedSeq<T> implements Seq<T> {
                 countNode = countNode.next();
                 i++;
             }
+            i++;
             assert i == size;
             assert countNode == tail;
         }
