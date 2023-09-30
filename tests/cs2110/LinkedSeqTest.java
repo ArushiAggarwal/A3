@@ -112,6 +112,60 @@ class LinkedSeqTest {
      */
 
     @Test
+    void testContains() {
+        Seq<String> list;
+
+        // empty list
+        list = makeList0();
+        assertFalse(list.contains("A"));
+
+        // non-empty list with length of 1 with the checked element in the list
+        list = makeList1();
+        assertTrue(list.contains("A"));
+
+        // non-empty list with length of 1 the checked element not in the list
+        list = makeList1();
+        assertFalse(list.contains("B"));
+
+        // non-empty list with length of over 1 with the checked element in the list
+        list = makeList3();
+        assertFalse(list.contains("troll"));
+
+        // non-empty list with length of over 1 with the checked element in the list
+        list = makeList3();
+        assertTrue(list.contains("B"));
+
+        // non-empty list with length of over 1 with the checked element appearing
+        // multiple times in the list
+        list = makeList3();
+        list.prepend(new String("B"));
+        list.prepend(new String("B"));
+        assertTrue(list.contains("B"));
+    }
+
+    @Test
+    void testGet() {
+        Seq<String> list;
+
+        // get the first node in the list
+        list = makeList3();
+        assertEquals("A", list.get(0));
+
+        // get the node in the middle of the list
+        assertEquals("B", list.get(1));
+
+        // get the node at the end of the list
+        assertEquals("C", list.get(2));
+
+        // get null from an empty list
+        // list = makeList0();
+        // assertNull(list.get(0));
+        /**
+         * CAUTION: Not sure if we have to include this case or not, considering it's a null case.
+         */
+    }
+
+    @Test
     void testHashCode() {
         assertEquals(makeList0().hashCode(), makeList0().hashCode());
 

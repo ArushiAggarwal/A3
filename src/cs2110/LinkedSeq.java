@@ -122,14 +122,37 @@ public class LinkedSeq<T> implements Seq<T> {
         // TODO 2: Write unit tests for this method, then implement it according to its
         // specification.  Tests must check for `elem` in a list that does not contain `elem`, in a
         // list that contains it once, and in a list that contains it more than once.
-        throw new UnsupportedOperationException();
+        Iterator<T> itr = iterator();
+        Node<T> currentNode = head;
+        while (itr.hasNext()) {
+            if (currentNode.data().equals(elem)) {
+                return true;
+            }
+            currentNode = currentNode.next();
+            itr.next();
+        }
+        return false;
     }
 
     @Override
     public T get(int index) {
         // TODO 3: Write unit tests for this method, then implement it according to its
         // specification.  Tests must get elements from at least three different indices.
-        throw new UnsupportedOperationException();
+        if (index == 0) {
+            return head.data();
+        }
+        Iterator<T> itr = iterator();
+        Node<T> currentNode = head;
+        int i = 0;
+        while (itr.hasNext()) {
+            if (i == index) {
+                return currentNode.data();
+            }
+            currentNode = currentNode.next();
+            itr.next();
+            i++;
+        }
+        return null;
     }
 
     @Override
